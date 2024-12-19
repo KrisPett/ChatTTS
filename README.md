@@ -1,3 +1,11 @@
+- conda create --name chattts
+- conda activate chattts
+- pip install -r requirements.txt
+- pip install soundfile
+- conda install -c conda-forge sox
+- conda install -c conda-forge ffmpeg
+- python examples/cmd/run.py
+
 <div align="center">
 
 <a href="https://trendshift.io/repositories/10489" target="_blank"><img src="https://trendshift.io/api/badge/repositories/10489" alt="2noise%2FChatTTS | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
