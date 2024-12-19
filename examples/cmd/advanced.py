@@ -2,7 +2,6 @@
 import torch
 import torchaudio
 from ChatTTS import Chat
-from datetime import datetime
 
 torch._dynamo.config.cache_size_limit = 64
 torch._dynamo.config.suppress_errors = True
