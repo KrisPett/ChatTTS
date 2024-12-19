@@ -20,25 +20,31 @@
 
 
 
-
 import torch
 import torchaudio
+from ChatTTS import Chat
+
 torch._dynamo.config.cache_size_limit = 64
 torch._dynamo.config.suppress_errors = True
 torch.set_float32_matmul_precision('high')
 
-import ChatTTS
-
-chat = ChatTTS.Chat()
+chat = Chat()
 chat.load(compile=False)
 
 texts = [
-    "Yes, this is a test of the emergency broadcast system.",
-    ]
+    "Yes, this is a test of the emergency broadcast system."
+]
 
 wavs = chat.infer(texts)
 
+output_filename = "basic_output0.wav"
+
 try:
-    torchaudio.save(f"basic_output{0}.wav", torch.from_numpy(wavs[0]).unsqueeze(0), 24000)
-except:
-    torchaudio.save(f"basic_output{0}.wav", torch.from_numpy(wavs[0]), 24000)
+    torchaudio.save(output_filename, torch.from_numpy(wavs[0]).unsqueeze(0), 24000)
+    print(f"Audio saved successfully as {output_filename}")
+except TypeError as e:
+    print(f"Encountered error while saving audio: {e}. Retrying without unsqueeze...")
+    torchaudio.save(output_filename, torch.from_numpy(wavs[0]), 24000)
+    print(f"Audio saved successfully as {output_filename} (retry without unsqueeze).")
+except Exception as e:
+    print(f"Failed to save audio: {e}")
