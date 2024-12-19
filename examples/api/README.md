@@ -6,6 +6,7 @@ Install `FastAPI` and `requests`:
 
 ```
 pip install -r examples/api/requirements.txt
+pip install "fastapi[standard]"
 ```
 
 ## Run API server
